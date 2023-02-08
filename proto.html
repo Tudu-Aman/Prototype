@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="proto.css">  <!--Linking my CSS file to this HTML file. The CSS file contain all the styling for this project. -->
+</head>
+<!-- HTML Part of the Calculator, creating the structure of the calculator.-->
+<body>
+     <!--We have divided different classes-->
+    <div class="container"> 
+        <div class="display">
+            <input id="screen"  type="text" placeholder="0"> <!--creating a input screen-->
+        </div>
+
+        <div class="buttons">
+            <div class="row">
+                <button id="change" class="button">(</button>
+                <button id="change" class="button">)</button>
+                <button id="change" onclick="log()">log</button>
+                <button id="backspc" onclick="backspc()">del</button>
+                <button id="clear" onclick="screen.value='' ">clear</button>
+            </div>
+
+            <div class="row">
+                <button class="button">7</button>
+                <button class="button">8</button>
+                <button class="button">9</button>
+                <button id="change" class="button">%</button>
+                <button id="change" onclick="sqrt()">√</button>
+            </div>
+
+            <div class="row">
+                <button class="button">4</button>
+                <button class="button">5</button>
+                <button class="button">6</button>
+                <button id="change" class="button">x</button>
+                <button id="change" class="button">÷</button>
+            </div>
+
+            <div class="row">
+                <button class="button">1</button>
+                <button class="button">2</button>
+                <button class="button">3</button>
+                <button id="change" class="button">+</button>
+                <button id="change" class="button">-</button>
+            </div>
+
+            <div class="row">
+                <button id="change" class="button">.</button>
+                <button class="button">0</button>
+                <button id="change" onclick="fact()">X!</button>
+                <button id="eval" onclick="screen.value=eval(screen.value)">ENTER</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!--JavaScript of the Calculator, it makes the button, Screen functionable, these programs contains the set instructions making calculator functionable-->
+<script>
+    var screen= document.querySelector('#screen');
+    var button= document.querySelectorAll('.button');
+
+    for(item of button)
+        {
+            item.addEventListener('click', (e) => {
+                buttontext = e.target.innerText;
+                if (buttontext =='x')
+                    {
+                        buttontext = '*';
+                    }
+                    if(buttontext=='÷')
+                        {
+                            buttontext = '/';
+                        }
+                        screen.value += buttontext;
+            });
+
+             function log()
+                {
+                    screen.value=Math.log(screen.value);
+                }
+
+            function sqrt()
+                {
+                    screen.value=Math.sqrt(screen.value,2);
+                }
+
+            function backspc()
+                {
+                    screen.value=screen.value.substring(0,screen.value.length-1);
+                }
+
+                function fact()
+                {
+                    var i, num, f;
+                    f=1;
+                    num=screen.value;
+                    for(i = 1; i <= num; i++)
+                    {
+                        f=f*i;
+                    }
+                    i=i-1;
+                    screen.value = f;
+                }
+        }
+
+</script>
+</html>
